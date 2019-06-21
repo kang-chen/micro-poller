@@ -3,6 +3,7 @@ const router = require('express').Router();
 
 const poller = (app, pollURL, sseURL, pollTime = 5000, sseInterval = 5000) => {
 
+    
    let data = null;
    // polling temperature api
    setInterval(() => {
