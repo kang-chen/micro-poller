@@ -5,15 +5,8 @@
   "main": "server.js",
   "dependencies": {
     "axios": "^0.19.0",
-    "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "morgan": "^1.9.1",
-    "nodemon": "^1.19.1"
   },
-//   "scripts": {
-//     "test": "mocha --timeout 6000 --require @babel/register --require @babel/polyfill --exit",
-//     "start": "nodemon server.js --exec babel-node"
-//   },
   "author": "Kang Hong Chen",
   "license": "MIT",
   "devDependencies": {
