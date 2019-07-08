@@ -2,8 +2,7 @@ const axios = require('axios');
 const router = require('express').Router();
 
 const poller = (app, pollURL, sseURL, pollTime = 5000, sseInterval = 5000) => {
-
-    
+  
    let data = null;
    // polling temperature api
    setInterval(() => {
@@ -29,20 +28,18 @@ const poller = (app, pollURL, sseURL, pollTime = 5000, sseInterval = 5000) => {
     });
   }
 
-// setup SSE endpoint for persistent data connection
+  // setup SSE endpoint for persistent data connection
+  router.get(sseURL, (req, res) => {
+      res.writeHead(200, {
+          'Content-Type': 'text/event-stream',
+          'Cache-Control': 'no-cache',
+          'Connection': 'keep-alive',
+      });
+      res.write('\n');
 
-router.get(sseURL, (req, res) => {
-    res.writeHead(200, {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive',
-    });
-    res.write('\n');
+      sseTemperatures(req, res);
+  });
 
-    sseTemperatures(req, res);
-});
-
-app.use(router)
-
+  app.use(router);
 }
 export default poller
